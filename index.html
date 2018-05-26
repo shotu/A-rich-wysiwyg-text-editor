@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-us" ng-app="trixDemo">
+  <head>
+  <meta charset="UTF-8">
+  <title>Angular-trix - A rich wysiwyg text editor directive for angularjs.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Angular-trix - A rich wysiwyg text editor directive for angularjs.">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,900">
+  <link rel="stylesheet" type="text/css" href="assets/styles/normalize.css" media="screen">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="assets/styles/trix.css">
+  <link rel="stylesheet" type="text/css" href="assets/styles/stylesheet.css" media="screen">
+  <link rel="stylesheet" type="text/css" href="assets/styles/github-light.css" media="screen">
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.12.0/firebase-firestore.js"></script>
+  </head>
+
+  <body ng-controller="trixDemoCtrl">
+  
+  <section class="page-header">
+    <h1 class="project-name">Angular-trix Live editor</h1>
+    <div id="status">You are online</div>
+  </section>
+
+  <section class="main-content">
+    <div class="editor-wrap">
+    <h2>Input </h2>
+    <trix-editor id="editorContent" spellcheck="false" class="trix-content" ng-model="trix" angular-trix trix-initialize="trixInitialize(e, editor);" trix-change="trixChange(e, editor);" trix-selection-change="trixSelectionChange(e, editor);" trix-focus="trixFocus(e, editor);" trix-blur="trixBlur(e, editor);" trix-file-accept="trixFileAccept(e, editor);" trix-attachment-add="trixAttachmentAdd(e, editor);" trix-attachment-remove="trixAttachmentRemove(e, editor);" placeholder="Write something.."></trix-editor>
+    </div>
+    <h2>Output</h2>
+  
+    <div class="output-view" id="output" style="border:1px solid #bbb">
+    </div>
+  </section>
+
+  <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+  <script src="assets/scripts/trix.js"></script>
+  <script src="assets/scripts/elastic.js"></script>
+  <script src="assets/scripts/angular-trix.js"></script>
+  <script src="assets/scripts/app.js"></script>
+  
+  <script>
+    /**
+     * 
+     *Check internet status 
+     */ 
+    function updateOnlineStatus(){
+        document.getElementById("status").innerHTML = "online";
+    }
+    function updateOfflineStatus(){
+        document.getElementById("status").innerHTML = "*You are offline: you might not get/post updates to backend";
+    }
+    window.addEventListener('online',  updateOnlineStatus);
+    window.addEventListener('offline', updateOfflineStatus);
+  </script>
+  </body>
+</html>
